@@ -8,8 +8,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
-        "coccoto/filereader": "*"
+        "php": "^7.4"
     },
     "autoload": {
         "psr-4": {

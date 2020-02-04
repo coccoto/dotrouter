@@ -2,21 +2,15 @@
 
 namespace coccoto\dotrouter;
 
-use coccoto\filereader as filereader;
-
 final class DotRouter {
 
-    private ? object $fileReader = null;
     private ? object $request = null;
     private ? array $conf = null;
-    private ? array $pathParameters = null;
+    private array $pathParameter = [];
 
     public function __construct() {
 
-        $this->fileReader = new filereader\FileReader();
         $this->request = new Request();
-
-        $this->setConf();
     }
 
     public function run(): void {
@@ -44,7 +38,7 @@ final class DotRouter {
                 return;
 
             } else if (strpos($mapParameter, ':') === 0) {
-                $this->setPathParameters($uriParameter, $mapParameter);
+                $this->setPathParameter($uriParameter, $mapParameter);
             }
         }
 
@@ -56,14 +50,14 @@ final class DotRouter {
         $controllerInstance = $this->createController($controller);
         $methodName = $method . 'Method';
 
-        $controllerInstance->setPathParameters($this->pathParameters);
+        $controllerInstance->setPathParameter($this->pathParameter);
         $controllerInstance->$methodName();
     }
 
-    private function setPathParameters(string $uriParameter, string $mapParameter): void {
+    private function setPathParameter(string $uriParameter, string $mapParameter): void {
 
         $parameter = substr($mapParameter, 1);
-        $this->pathParameters[$parameter] = $uriParameter;
+        $this->pathParameter[$parameter] = $uriParameter;
     }
 
     private function createController(string $controller): object {
@@ -72,9 +66,11 @@ final class DotRouter {
         return new $controllerName;
     }
 
-    private function setConf(): void {
+    public function push(array $map, string $namespace): void {
 
-        $conf = $this->fileReader->search(__DIR__ . '/../conf/*');
-        $this->conf = $conf;
+        $this->conf = [
+            'map' => $map,
+            'namespace' => $namespace,
+        ];
     }
 }
