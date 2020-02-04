@@ -55,7 +55,7 @@ $map = [
 
 ### Create a class to load.
 
-Creates a specified namespace for the class to be loaded, a property called path Parameter, and a method called setPathParameter.
+PathParameter is placed in the property because it is inserted into the constructor argument of the loading class.
 
 - app/controllers/FooController.php
 
@@ -66,14 +66,14 @@ class FooController {
 
     public array $pathParameter;
 
-    public function setPathParameter(array $pathParameter): void {
+    public function __construct(array $pathParameter) {
 
-        $this->pathParameter = $pathParameter;
+        $this->pathParameter= $pathParameter;
     }
 
     public function barMethod() {
 
-        // echo $pathParameter['page'];
+        echo $this->pathParameter['page'];
     }
 
     ~~~
