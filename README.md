@@ -9,7 +9,7 @@ It does a very simple routing.
 ## Installation
 
 ```sh
-$ composer require coccoto/routing
+$ composer require coccoto/dotrouter
 ```
 
 ## Usage
@@ -17,22 +17,28 @@ $ composer require coccoto/routing
 ```php
 require_once 'vendor/autoload.php';
 
+$map = [
+    '/' => [
+        'controller' => 'Index',
+        'method' => 'index',
+    ],
+];
+
+$namespace = 'app\\controllers\\';
+
 $dotRouter = new coccoto\dotrouter\DotRouter();
+$dotRouter->push($map, $namespace);
 ```
 
 ### Set the namespace.
 
-- src/conf/namespace.php
-
 ```php
-$namespace = 'controllers\\';
+$namespace = 'app\\controllers\\';
 ```
 
 ### Create a routing map.
 
 Path parameters can be used by preceding them with a colon.
-
-- src/conf/map.php
 
 ```php
 $map = [
@@ -54,20 +60,20 @@ Creates a specified namespace for the class to be loaded, a property called path
 - app/controllers/FooController.php
 
 ```php
-namespace controllers;
+namespace app\controllers;
 
 class FooController {
 
-    public array $pathParameters;
+    public array $pathParameter;
 
-    public function setPathParameters(array $pathParameter): void {
+    public function setPathParameter(array $pathParameter): void {
 
         $this->pathParameter = $pathParameter;
     }
 
     public function barMethod() {
 
-        // echo $pathParameters['page'];
+        // echo $pathParameter['page'];
     }
 
     ~~~
@@ -82,6 +88,7 @@ There are no more features and it's easy. Then start it.
 ~~~
 
 $dotRouter = new coccoto\dotrouter\DotRouter();
+$dotRouter->push($map, $namespace);
 $dotRouter->run();
 ```
 
