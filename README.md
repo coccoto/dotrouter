@@ -60,7 +60,7 @@ class FooController {
 
     public array $pathParameters;
 
-    public function setPathParameters(array $pathParameter) {
+    public function setPathParameters(array $pathParameter): void {
 
         $this->pathParameter = $pathParameter;
     }
