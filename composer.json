@@ -1,0 +1,19 @@
+{
+    "name": "coccoto/dotrouter",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cocoto",
+            "email": "marilun.lune@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "coccoto/filereader": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "coccoto\\dotrouter\\": "src/"
+        }
+    }
+}
