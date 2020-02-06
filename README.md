@@ -46,9 +46,9 @@ $map = [
         'controller' => 'IndexController',
         'method' => 'indexMethod',
     ],
-    '/foo/page/:page' => [
-        'controller' => 'FooController',
-        'method' => 'barMethod',
+    '/animal/page/:id' => [
+        'controller' => 'CatController',
+        'method' => 'foodMethod',
     ],
 ];
 ```
@@ -62,21 +62,19 @@ PathParameter is placed in the property because it is inserted into the construc
 ```php
 namespace app\controllers;
 
-class FooController {
+class CatController {
 
     public array $pathParameter;
 
     public function __construct(array $pathParameter) {
 
-        $this->pathParameter= $pathParameter;
+        $this->pathParameter = $pathParameter;
     }
 
-    public function barMethod() {
+    public function foodMethod() {
 
-        echo $this->pathParameter['page'];
+        echo $this->pathParameter['id'];
     }
-
-    ~~~
 }
 ```
 
