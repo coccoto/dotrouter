@@ -19,8 +19,8 @@ require_once 'vendor/autoload.php';
 
 $map = [
     '/' => [
-        'controller' => 'Index',
-        'method' => 'index',
+        'controller' => 'IndexController',
+        'method' => 'indexMethod',
     ],
 ];
 
@@ -43,12 +43,12 @@ Path parameters can be used by preceding them with a colon.
 ```php
 $map = [
     '/' => [
-        'controller' => 'Index', // IndexController
-        'method' => 'index', // indexMethod
+        'controller' => 'IndexController',
+        'method' => 'indexMethod',
     ],
     '/foo/page/:page' => [
-        'controller' => 'Foo', // FooController
-        'method' => 'bar', // barMethod
+        'controller' => 'FooController',
+        'method' => 'barMethod',
     ],
 ];
 ```

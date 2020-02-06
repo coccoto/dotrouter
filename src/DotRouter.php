@@ -48,8 +48,7 @@ final class DotRouter {
     private function execute(string $controller, string $method): void {
 
         $controllerInstance = $this->createController($controller);
-        $methodName = $method . 'Method';
-        $controllerInstance->$methodName();
+        $controllerInstance->$method();
     }
 
     private function setPathParameter(string $uriParameter, string $mapParameter): void {
@@ -60,7 +59,7 @@ final class DotRouter {
 
     private function createController(string $controller): object {
 
-        $controllerName = $this->conf['namespace'] . $controller . 'Controller';
+        $controllerName = $this->conf['namespace'] . $controller;
         return new $controllerName($this->pathParameter);
     }
 
